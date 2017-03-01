@@ -108,4 +108,15 @@ class User extends Model
 
         return [$username, $password];
     }
+
+    /**
+     * 多对多关系
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function answers(){
+        return $this
+            ->belongsToMany('App/Answer')
+            ->withPivot('vote')
+            ->withTimestamps();
+    }
 }
