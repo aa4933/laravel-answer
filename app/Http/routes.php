@@ -10,9 +10,9 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-function paginate($page=1, $limit=15)
+function paginate($page = 1, $limit = 15)
 {
-    $limit=$limit?:16;
+    $limit = $limit ?: 16;
     $skip = $limit * (($page ?: 1) - 1);
     return [$limit, $skip];
 }
@@ -24,10 +24,19 @@ function rq($key = null, $default = null)
     return Request::get($key, $default);
 }
 
-function err($msg=null){
-    return
+function err($msg = null)
+{
+    return ['status' => 0, 'msg' => $msg];
 }
 
+
+function suc($data_to_merge = null)
+{
+    $data=['status' => 1];
+    if ($data_to_merge)
+        $data['data'] = $data_to_merge;
+    return $data;
+}
 
 
 function user_ins()
@@ -87,6 +96,18 @@ Route::group(['middleware' => ['web']], function () {
     });
     Route::any('api/logout', function () {
         return user_ins()->logout();
+    });
+    Route::any('api/user/change', function () {
+        return user_ins()->change_password();
+    });
+    Route::any('api/user/find_password', function () {
+        return user_ins()->find_password();
+    });
+    Route::any('api/user/check_find_password', function () {
+        return user_ins()->check_find_password();
+    });
+    Route::any('api/user/look', function () {
+        return user_ins()->look();
     });
     //问题API
     Route::any('api/question/add', function () {

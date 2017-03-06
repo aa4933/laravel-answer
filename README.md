@@ -6,7 +6,22 @@ maybe you never felt before, but for this new understanding of many PHP
 
 
 # 中文
-这是一个laravel的项目，一个全新的项目，
-或许这是一个很好的想法，从未有过的一些写法，
-但是根据此项目，从中学习到很多不一样的东西，
-也许是以前从未感受过的，不过对于此有很多的新的认识关于php
+这是一个laravel的项目
+
+# 关于仿知乎API介绍及调用原则
+
+本接口分为4个模块
+ 
+· 用户
+        
+· 问题
+
+· 回答
+
+· 评论
+
+有部分通用的API不做详细分析
+
+具体可见`http/route`
+
+入口`server.php`
